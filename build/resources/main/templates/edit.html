@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MVC Web application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Edit a record</h1>
+
+<form action="update" method="post">
+    <input type="hidden" name="id" th:value="${person.id}">
+    Name:<input type="text" name="firstname" th:value="${person.firstName}"><br>
+    Surname:<input type="text" name="lastname" th:value="${person.lastName}"><br>
+    <input type="submit" />
+</form>
+
+<a href="list"> Show the list </a>
+
+</body>
+</html>
