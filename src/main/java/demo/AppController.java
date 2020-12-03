@@ -52,9 +52,12 @@ public class AppController {
             Model model) {
         Optional<Person> result = repository.findById(id);
 
+        //If the person is not present in the repository, it returns notfound page
         if(!result.isPresent())
             return "notfound";
 
+        /* It extracts the instance of person and add it as attribute on the model
+           in order to show the person details on the view */
         Person person = result.get();
         model.addAttribute("person", person);
 
@@ -68,9 +71,13 @@ public class AppController {
             @RequestParam(name="id", required=true) Long id,
             Model model) {
         Optional<Person> result = repository.findById(id);
+
+        //If the person is not present in the repository, it returns notfound page
         if(!result.isPresent())
             return "notfound";
 
+        /* It extracts the instance of person and add it as attribute on the model
+        in order to show the values that need to be edit */
         Person person = result.get();
         model.addAttribute("person", person);
         return "edit";
@@ -84,17 +91,26 @@ public class AppController {
             Model model) {
 
         Optional<Person> result = repository.findById(id);
+
+        //If the person is not present in the repository, it returns notfound page
         if(!result.isPresent())
             return "notfound";
 
+        //It deletes the person from repository
         repository.deleteById(id);
+
+        //It saves a new instance of Person with the edited data
         repository.save(new Person(firstname, lastname));
 
         return "redirect:/list";
     }
 
-    //This is an alternative implementation of update
-    /* It updates without deleting. This permit to reuse IDs.
+    // This is an alternative implementation of update:
+    // it doesn't delete the previous instance of Person, but it only
+    // set the new values and saves them into the same instance in repository.
+    // This is a way to maintain and reuse the IDs of Person instances.
+    // It requires implementation of set methods in Person class (they are commented).
+    /*
     @RequestMapping("/update")
     public String update(
             @RequestParam(name="id", required=true) Long id,
@@ -112,16 +128,22 @@ public class AppController {
         repository.save(person);
 
         return "redirect:/list";
-    }*/
+    }
+    */
 
     @RequestMapping("/delete")
     public String delete(
             @RequestParam(name="id", required=true) Long id) {
         Optional<Person> result = repository.findById(id);
+
+        //If the person is not present in the repository, it returns notfound page
         if(!result.isPresent())
             return "notfound";
 
+        //It deletes the person with the edited data
         repository.deleteById(id);
+
+        //It saves a new instance of Person with empty fields
         repository.save(new Person());
 
         return "redirect:/list";

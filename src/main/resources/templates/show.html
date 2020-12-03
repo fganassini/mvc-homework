@@ -12,9 +12,9 @@
     <li><p th:text="'SURNAME: ' + ${person.lastName}">surname: </p></li>
 </ul>
 
-<a href="show?id=10" th:href="@{show(id=${person.id})}"> show </a> <br>
 <a href="edit?id=10" th:href="@{edit(id=${person.id})}"> edit </a> <br>
-<a href="delete?id=10" th:href="@{delete(id=${person.id})}"> delete </a>
+<a href="delete?id=10" th:href="@{delete(id=${person.id})}"> delete </a> <br>
+<a href="list"> Show the list </a>
 
 </body>
 </html>

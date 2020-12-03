@@ -40,7 +40,8 @@ public class Person {
         return lastName;
     }
 
-    /* These methods are used by the second version of update
+    //These methods are used by the second version of update
+    /*
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
